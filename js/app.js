@@ -2,25 +2,12 @@ console.log("Hello there!");
 
 // To Do List //////////////////////////////////////////////////////////////////
 // 2. Increase your pet's age every x minutes
-// 3. Increase your pet's Hunger, Sleepiness, and Bored metrics on an interval of your choosing.
-// 4. You pet should die if Hunger, Boredom, or Sleepiness hits zero.
 // 5. Morph your pet at certain ages
 // 6. Animate your pet across the screen
 ////////////////////////////////////////////////////////////////////////////////
 
 
-// Set Interval Function
-//  Food, Boredom, Sleepiness level counts one-by-one down to zero every five minutes
-    //this.food, this.fun, this.sleep: -1 per 5 minutes
-    //if lifeStatus=dead true do not run.
-    //if lifeStatus=egg true do not run.
-
-
-
-
-
-
-// Starting class/stats/methods of a Notagotchi
+// Starting class/name/stats/methods of a Notagotchi
 class Notagotchi {
   constructor(notaName){
     this.name = notaName;
@@ -29,24 +16,32 @@ class Notagotchi {
     this.sleep = 3;
     this.age = 0;
   }
+
+  //  Refills Food
   getFed(){
     this.food = 10;
     //  Clicking "feed" button displays food image for 3 seconds
     console.log("Your Notagotchi is fed.");
     console.log(this.food);
   }
+
+  //  Refills Sleep
   getRest(){
     this.sleep = 10;
     //  Clicking "rest" button displays sleep image for 3 seconds
     console.log("Your Notagotchi is asleep...");
     console.log(this.sleep);
   }
+
+  //  Refills Fun
   getFun(){
     this.fun = 10;
-        //  Clicking "play" button displays play image for 3 seconds
+    //  Clicking "play" button displays play image for 3 seconds
     console.log("You play with your Notagotchi!");
     console.log(this.fun);
   }
+
+  //  This advances the age
   getOlder(){
     this.age  = this.age + 1;
     //  Happens every 7 min if lifeStatus=Alive
@@ -59,25 +54,67 @@ class Notagotchi {
     //  if age === 9, 90% chance of Death, Run Death Logic
     //  if age === 10, 100% chance of Death, Run Death Logic
   }
+
+  //  This death method stops the time
+  die(){
+    clearInterval(intervalId);
+  }
 }
 
-setInterval(function() {
 
-      console.log("Hello");
-}, 5000);
-
-
-// Naming and new game function!
-
+//  This asks and defines Notagotchi name
 let notagotchiName = prompt("Please enter a name for your Notagotchi");
 if (notagotchiName === "") {
   console.log("No name? We can just call them 'Notagotchi!'");
   notagotchiName = "Notagotchi";
 }
-
+//  This utilizes the established name
 const notagotchiOnScreen = new Notagotchi(notagotchiName);
 console.log(notagotchiOnScreen);
 
+
+
+
+// Set Interval Function
+//  Food, Boredom, Sleepiness level counts one-by-one down to zero every five minutes
+    //this.food, this.fun, this.sleep: -1 per 5 minutes
+    //if lifeStatus=dead true do not run.
+    //if lifeStatus=egg true do not run.
+
+
+// setInterval returns an intervalId which we will use to stop timer when its time
+const intervalId = setInterval(function() {
+
+  //  Slowly ages the notagotchi
+  notagotchiOnScreen.getOlder();
+
+  //  Slowly reduces food supply, possibly to death
+  notagotchiOnScreen.food = notagotchiOnScreen.food - 1;
+  console.log(notagotchiOnScreen.food);
+  if (notagotchiOnScreen.food <= 0) {
+    console.log(notagotchiOnScreen.name + " has passed from hunger...");
+    notagotchiOnScreen.die()
+  }
+
+  //  Slowly reduces fun supply, possibly to death
+  notagotchiOnScreen.fun = notagotchiOnScreen.fun - 1;
+  console.log(notagotchiOnScreen.fun);
+  if (notagotchiOnScreen.fun <= 0) {
+    console.log(notagotchiOnScreen.name + " has died of boredom...");
+    notagotchiOnScreen.die()
+  }
+
+  //  Slowly reduces rest supply, possibly to death
+  notagotchiOnScreen.sleep = notagotchiOnScreen.sleep - 1;
+  console.log(notagotchiOnScreen.sleep);
+  if (notagotchiOnScreen.sleep <= 0) {
+    console.log(notagotchiOnScreen.name + " has passed from unrest...");
+    notagotchiOnScreen.die()
+    }
+
+  }, 1000);
+
+// this will stop the timer
 
 
 //  This button feeds the Notagotchi
