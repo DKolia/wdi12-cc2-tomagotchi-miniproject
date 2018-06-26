@@ -1,37 +1,23 @@
 console.log("Hello there!");
 
-//  Life Logic:
-//  Perhaps use lifeStatus, egg, alive, dead
-//  Notagotchi begins in egg
-//  Notagotchi "age" one "level" every 7 minutes
-//  Each "age" has a new image to update
-//  Will eventually die of old age
-//  When notagotchi dies, display RIP image for 5 seconds
+// To Do List //////////////////////////////////////////////////////////////////
+//Add the ability to name your pet
+// Increase your pet's age every x minutes
+// Increase your pet's Hunger, Sleepiness, and Bored metrics on an interval of your choosing.
+// You pet should die if Hunger, Boredom, or Sleepiness hits 10.
+// Morph your pet at certain ages
+// Animate your pet across the screen
+////////////////////////////////////////////////////////////////////////////////
 
 
-//  Death Logic:
-//  Notagotchi dies when any Need falls to zero
-//  Display Death Image
-//  console.log("Your Notagotchi has perished, but it wanted to say goodbye with a gift...");
-//  Display and run Egg function
-
-//  Egg Logic:
-//  Notagotchi starts in egg form
-//  Notagotchi stays in egg form forever unless "hatched"
-//  Notagotchi "hatches" to first form when any Need button is clicked
-//  Notagotchi egg is brought back 5 seconds after Notagotchi death
-//  Cycle repeats
-
-//  Variables to name:
-//  gameClock (real life full seconds)   // Set Interval Function
-//  Needs Function:
+// Set Interval Function
 //  Food, Boredom, Sleepiness level counts one-by-one down to zero every five minutes
     //this.food, this.fun, this.sleep: -1 per 5 minutes
     //if lifeStatus=dead true do not run.
     //if lifeStatus=egg true do not run.x
 
 
-// Starting class/stats of a Notagotchi
+// Starting class/stats/methods of a Notagotchi
 class Notagotchi {
   constructor(){
     this.food = 3;
@@ -48,13 +34,13 @@ class Notagotchi {
   getRest(){
     this.sleep = 10;
     //  Clicking "rest" button displays sleep image for 3 seconds
-    console.log("Your Notagotchi is asleep.");
+    console.log("Your Notagotchi is asleep...");
     console.log(this.sleep);
   }
   getFun(){
     this.fun = 10;
         //  Clicking "play" button displays play image for 3 seconds
-    console.log("You play with your Notagotchi");
+    console.log("You play with your Notagotchi!");
     console.log(this.fun);
   }
   getOlder(){
@@ -71,45 +57,98 @@ class Notagotchi {
   }
 }
 
-
-
 const harry = new Notagotchi();
 
 
+//  This button feeds the Notagotchi
 $("#feedButton").on("click",() => {
   harry.getFed()
 });
 
+//  This button puts the Notagotchi to sleep
 $("#sleepButton").on("click",() => {
   harry.getRest()
 });
 
+//  This button plays with the Notagotchi
 $("#funButton").on("click",() => {
   harry.getFun()
 });
 
 
-// Lets load images somehow...
 
-     imagesLibrary = {
-      asleep:       "Asleep.jpg",
-      dead:         "Dead.jpg",
-      food:         "Food.jpg",
-      fun:          "Fun.jpg",
-      egg:          "NewZaggle.jpg",
-      form1:        "Zaggle1.jpg",
-      form1Needy:   "Zaggle1Needy.jpg",
-      form2:        "Zaggle2.jpg",
-      form2Needy:   "Zaggle2Needy.jpg",
-      form3:        "Zaggle3.jpg",
-      form3Needy:   "Zaggle3Needy.jpg",
-      form4:        "Zaggle4.jpg",
-      form4Needy:   "Zaggle4Needy.jpg",
-      form5:        "Zaggle5.jpg",
-      form5Needy:   "Zaggle5Needy.jpg"
-    }
+////////////////////////////////////////////////////////////////////////////////
+//  Images
+// Lets load images somehow...
+    //
+    //  imagesLibrary = {
+    //   asleep:       "Asleep.jpg",
+    //   dead:         "Dead.jpg",
+    //   food:         "Food.jpg",
+    //   fun:          "Fun.jpg",
+    //   egg:          "NewZaggle.jpg",
+    //   form1:        "Zaggle1.jpg",
+    //   form1Needy:   "Zaggle1Needy.jpg",
+    //   form2:        "Zaggle2.jpg",
+    //   form2Needy:   "Zaggle2Needy.jpg",
+    //   form3:        "Zaggle3.jpg",
+    //   form3Needy:   "Zaggle3Needy.jpg",
+    //   form4:        "Zaggle4.jpg",
+    //   form4Needy:   "Zaggle4Needy.jpg",
+    //   form5:        "Zaggle5.jpg",
+    //   form5Needy:   "Zaggle5Needy.jpg"
+    // }
 
 // // using our imageUrl to add image to the page
 // const $imageElement = $("<img>"); //Creates image element
 // $imageElement.attr("src",)  // Set Src for the img element
 // $("body").append($imageElement)
+////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////
+//  Egg Logic:
+//  Notagotchi starts in egg form
+//    Egg form displays egg image
+//    Egg form cannot age
+//    Egg form cannot go hungry, sleepy, or grow bored
+
+//  Notagotchi stays in egg form forever unless "hatched"
+//  Notagotchi "hatches" to first form when any Need button is clicked
+//  Notagotchi egg is brought back 5 seconds after Notagotchi death
+//  Cycle repeats
+
+class notagotchiEgg {
+  constructor() {
+    this.food = 99999;
+    this.fun = 99999;
+    this.sleep = 99999;
+    this.age = -99999;
+  }
+  hatch();
+}
+////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////
+//  lifeCycle
+//    eggStage
+//    aliveStage
+//    deathStage
+//    When notagotchi dies, display RIP image for 5 seconds
+//    Return to egg cycle
+
+//  Death Logic:
+//  Notagotchi dies when any Need falls to zero
+//  Display Death Image
+//  console.log("Your Notagotchi has perished, but it wanted to say goodbye with a gift...");
+//  Display and run Egg function
+
+//  Life Logic:
+//  Perhaps use lifeStatus, egg, alive, dead
+//  Notagotchi begins in egg
+//  Notagotchi "age" one "level" every 7 minutes
+//  Each "age" has a new image to update
+//  Will eventually die of old age
+
+////////////////////////////////////////////////////////////////////////////////
