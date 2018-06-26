@@ -11,8 +11,9 @@ console.log("Hello there!");
 //  Death Logic:
 //  Notagotchi dies when any Need falls to zero
 //  Notagotchi dies when maximumLifeSpan is met- no matter what
-//  Notagotchi death displays the RIP image for 5 seconds, then displays egg
-
+//  Display Death Image
+//  console.log("Your Notagotchi has perished, but it wanted to say goodbye with a gift...");
+//  Display and run Egg function
 
 //  Egg Logic:
 //  Notagotchi starts in egg form
@@ -23,30 +24,64 @@ console.log("Hello there!");
 
 
 //  Variables to name:
-//  Food (0-10)
-//  Fun (0-10)
-//  Sleep (0-10)
-//  Age (0-10
-//  maximumLifeSpan (10% chance @ age 5, 30% change @ age 6, 50% chance at age 7, 70% chance at age 8, 90% chance at age 9, 100% chance dead by age 10
-//  gameClock (real life full seconds)
+//  Aging (10% chance @ age 5, 30% change @ age 6, 50% chance at age 7, 70% chance at age 8, 90% chance at age 9, 100% chance dead by age 10  // Function to Class
+//  gameClock (real life full seconds)   // Set Interval Function
+
+// Starting stats of a Notagotchi
+class Notagotchi {
+  constructor(){
+    this.food = 3;
+    this.fun = 5;
+    this.sleep = 3;
+    this.age = 0;
+  }
+  getFed(){
+    this.food = 10;
+    //  Clicking "feed" button displays food image for 3 seconds
+    console.log("Your Notagotchi is fed.");
+    console.log(this.food);
+  }
+  getRest(){
+    this.sleep = 10;
+    //  Clicking "rest" button displays sleep image for 3 seconds
+    console.log("Your Notagotchi is asleep.");
+    console.log(this.sleep);
+  }
+  getFun(){
+    this.fun = 10;
+        //  Clicking "play" button displays play image for 3 seconds
+    console.log("You play with your Notagotchi");
+    console.log(this.fun);
+  }
+  getOlder(){
+    this.age  = this.age + 1;
+    console.log("Your Notagotchi celebrates a birthday!");
+    console.log("Your Notagotchi is " + this.age + " years old!");
+  }
+
+}
+// // using our imageUrl to add image to the page
+// const $imageElement = $("<img>"); //Creates image element
+// $imageElement.attr("src=/images/NewZaggle.jpg")  // Set Src for the img element
+// $("body").append($imageElement)
 
 
-//  Food Logic:
-//  Notagotchi starts with 3 Food
+const harry = new Notagotchi();
+
+
+//  Hunger Function:
 //  Food level counts one-by-one down to zero every five minutes
-//  Clicking "feed" button raises food to 10 instantly
-//  Clicking "feed" button displays food image for 3 seconds
 
 
-//  Fun Logic:
-//  Notagotchi starts with 5 Fun
+//  Boredom Function:
 //  Fun level counts one-by-one down to zero every five minutes
-//  Clicking "play" button raises fun to 10 instantly
-//  Clicking "play" button displays play image for 3 seconds
 
 
-//  Sleep Logic:
-//  Notagotchi starts with 3 Sleep
+//  Sleepiness Function:
 //  Sleep level counts one-by-one down to zero every five minutes
-//  Clicking "rest" button raises sleep to 10 instantly
-//  Clicking "rest" button displays sleep image for 3 seconds
+
+
+// // using our imageUrl to add image to the page
+// const $imageElement = $("<img>"); //Creates image element
+// $imageElement.attr("src",)  // Set Src for the img element
+// $("body").append($imageElement)
