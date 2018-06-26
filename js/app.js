@@ -1,6 +1,7 @@
 console.log("Hello there!");
 
 //  Life Logic:
+//  Perhaps use lifeStatus, egg, alive, dead
 //  Notagotchi begins in egg
 //  Notagotchi "age" one "level" every 7 minutes
 //  Each "age" has a new image to update
@@ -10,7 +11,6 @@ console.log("Hello there!");
 
 //  Death Logic:
 //  Notagotchi dies when any Need falls to zero
-//  Notagotchi dies when maximumLifeSpan is met- no matter what
 //  Display Death Image
 //  console.log("Your Notagotchi has perished, but it wanted to say goodbye with a gift...");
 //  Display and run Egg function
@@ -24,10 +24,9 @@ console.log("Hello there!");
 
 
 //  Variables to name:
-//  Aging (10% chance @ age 5, 30% change @ age 6, 50% chance at age 7, 70% chance at age 8, 90% chance at age 9, 100% chance dead by age 10  // Function to Class
 //  gameClock (real life full seconds)   // Set Interval Function
 
-// Starting stats of a Notagotchi
+// Starting class/stats of a Notagotchi
 class Notagotchi {
   constructor(){
     this.food = 3;
@@ -55,31 +54,60 @@ class Notagotchi {
   }
   getOlder(){
     this.age  = this.age + 1;
+    //  Happens every 7 min if lifeStatus=Alive
     console.log("Your Notagotchi celebrates a birthday!");
     console.log("Your Notagotchi is " + this.age + " years old!");
+    //  if age === 5, 10% chance of Death, Run Death Logic
+    //  if age === 6, 30% chance of Death, Run Death Logic
+    //  if age === 7, 50% chance of Death, Run Death Logic
+    //  if age === 8, 70% chance of Death, Run Death Logic
+    //  if age === 9, 90% chance of Death, Run Death Logic
+    //  if age === 10, 100% chance of Death, Run Death Logic
   }
-
 }
-// // using our imageUrl to add image to the page
-// const $imageElement = $("<img>"); //Creates image element
-// $imageElement.attr("src=/images/NewZaggle.jpg")  // Set Src for the img element
-// $("body").append($imageElement)
-
 
 const harry = new Notagotchi();
 
 
 //  Hunger Function:
 //  Food level counts one-by-one down to zero every five minutes
-
+    //this.food -1 per 5 minutes
+    //if lifeStatus=dead do not run.
+    //if lifeStatus=egg do not run.
 
 //  Boredom Function:
 //  Fun level counts one-by-one down to zero every five minutes
-
+    //this.fun -1 per 5 minutes
+    //if lifeStatus=dead do not run.
+    //if lifeStatus=egg do not run.
 
 //  Sleepiness Function:
 //  Sleep level counts one-by-one down to zero every five minutes
+    //this.sleep -1 per 5 minutes
+    //if lifeStatus=dead do not run.
+    //if lifeStatus=egg do not run.
 
+
+
+
+
+    let imagesLibrary = {
+      asleep:       "Asleep.jpg",
+      dead:         "Dead.jpg",
+      food:         "Food.jpg",
+      fun:          "Fun.jpg",
+      egg:          "NewZaggle.jpg",
+      form1:        "Zaggle1.jpg",
+      form1Needy:   "Zaggle1Needy.jpg",
+      form2:        "Zaggle2.jpg",
+      form2Needy:   "Zaggle2Needy.jpg",
+      form3:        "Zaggle3.jpg",
+      form3Needy:   "Zaggle3Needy.jpg",
+      form4:        "Zaggle4.jpg",
+      form4Needy:   "Zaggle4Needy.jpg",
+      form5:        "Zaggle5.jpg",
+      form5Needy:   "Zaggle5Needy.jpg"
+    }
 
 // // using our imageUrl to add image to the page
 // const $imageElement = $("<img>"); //Creates image element
