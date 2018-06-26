@@ -1,12 +1,11 @@
 console.log("Hello there!");
 
 // To Do List //////////////////////////////////////////////////////////////////
-//Add the ability to name your pet
-// Increase your pet's age every x minutes
-// Increase your pet's Hunger, Sleepiness, and Bored metrics on an interval of your choosing.
-// You pet should die if Hunger, Boredom, or Sleepiness hits 10.
-// Morph your pet at certain ages
-// Animate your pet across the screen
+// 2. Increase your pet's age every x minutes
+// 3. Increase your pet's Hunger, Sleepiness, and Bored metrics on an interval of your choosing.
+// 4. You pet should die if Hunger, Boredom, or Sleepiness hits zero.
+// 5. Morph your pet at certain ages
+// 6. Animate your pet across the screen
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -14,12 +13,17 @@ console.log("Hello there!");
 //  Food, Boredom, Sleepiness level counts one-by-one down to zero every five minutes
     //this.food, this.fun, this.sleep: -1 per 5 minutes
     //if lifeStatus=dead true do not run.
-    //if lifeStatus=egg true do not run.x
+    //if lifeStatus=egg true do not run.
+
+
+
+
 
 
 // Starting class/stats/methods of a Notagotchi
 class Notagotchi {
-  constructor(){
+  constructor(notaName){
+    this.name = notaName;
     this.food = 3;
     this.fun = 5;
     this.sleep = 3;
@@ -57,25 +61,41 @@ class Notagotchi {
   }
 }
 
-const harry = new Notagotchi();
+setInterval(function() {
+
+      console.log("Hello");
+}, 5000);
+
+
+// Naming and new game function!
+
+let notagotchiName = prompt("Please enter a name for your Notagotchi");
+if (notagotchiName === "") {
+  console.log("No name? We can just call them 'Notagotchi!'");
+  notagotchiName = "Notagotchi";
+}
+
+const notagotchiOnScreen = new Notagotchi(notagotchiName);
+console.log(notagotchiOnScreen);
+
 
 
 //  This button feeds the Notagotchi
 $("#feedButton").on("click",() => {
-  harry.getFed()
+  notagotchiOnScreen.getFed()
 });
 
 //  This button puts the Notagotchi to sleep
 $("#sleepButton").on("click",() => {
-  harry.getRest()
+  notagotchiOnScreen.getRest()
 });
 
 //  This button plays with the Notagotchi
 $("#funButton").on("click",() => {
-  harry.getFun()
+  notagotchiOnScreen.getFun()
 });
 
-
+// Code by David Kolia
 
 ////////////////////////////////////////////////////////////////////////////////
 //  Images
@@ -118,15 +138,15 @@ $("#funButton").on("click",() => {
 //  Notagotchi egg is brought back 5 seconds after Notagotchi death
 //  Cycle repeats
 
-class notagotchiEgg {
-  constructor() {
-    this.food = 99999;
-    this.fun = 99999;
-    this.sleep = 99999;
-    this.age = -99999;
-  }
-  hatch();
-}
+// class notagotchiEgg {
+//   constructor() {
+//     this.food = 99999;
+//     this.fun = 99999;
+//     this.sleep = 99999;
+//     this.age = -99999;
+//   }
+//   hatch();
+// }
 ////////////////////////////////////////////////////////////////////////////////
 
 
