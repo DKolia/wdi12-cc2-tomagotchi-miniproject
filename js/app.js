@@ -17,14 +17,19 @@ console.log("Hello there!");
 
 //  Egg Logic:
 //  Notagotchi starts in egg form
-//  Notagotchi stays in egg form forever until...
+//  Notagotchi stays in egg form forever unless "hatched"
 //  Notagotchi "hatches" to first form when any Need button is clicked
 //  Notagotchi egg is brought back 5 seconds after Notagotchi death
 //  Cycle repeats
 
-
 //  Variables to name:
 //  gameClock (real life full seconds)   // Set Interval Function
+//  Needs Function:
+//  Food, Boredom, Sleepiness level counts one-by-one down to zero every five minutes
+    //this.food, this.fun, this.sleep: -1 per 5 minutes
+    //if lifeStatus=dead true do not run.
+    //if lifeStatus=egg true do not run.x
+
 
 // Starting class/stats of a Notagotchi
 class Notagotchi {
@@ -66,32 +71,27 @@ class Notagotchi {
   }
 }
 
+
+
 const harry = new Notagotchi();
 
 
-//  Hunger Function:
-//  Food level counts one-by-one down to zero every five minutes
-    //this.food -1 per 5 minutes
-    //if lifeStatus=dead do not run.
-    //if lifeStatus=egg do not run.
+$("#feedButton").on("click",() => {
+  harry.getFed()
+});
 
-//  Boredom Function:
-//  Fun level counts one-by-one down to zero every five minutes
-    //this.fun -1 per 5 minutes
-    //if lifeStatus=dead do not run.
-    //if lifeStatus=egg do not run.
+$("#sleepButton").on("click",() => {
+  harry.getRest()
+});
 
-//  Sleepiness Function:
-//  Sleep level counts one-by-one down to zero every five minutes
-    //this.sleep -1 per 5 minutes
-    //if lifeStatus=dead do not run.
-    //if lifeStatus=egg do not run.
+$("#funButton").on("click",() => {
+  harry.getFun()
+});
 
 
+// Lets load images somehow...
 
-
-
-    let imagesLibrary = {
+     imagesLibrary = {
       asleep:       "Asleep.jpg",
       dead:         "Dead.jpg",
       food:         "Food.jpg",
