@@ -1,12 +1,14 @@
 console.log("Hello there!");
 
 // To Do List //////////////////////////////////////////////////////////////////
-// 5. Morph your pet at certain ages
-// 6. Animate your pet across the screen
+// 1. Add special effect images
+// 2. Animate your pet across the screen
+// 3. Build a scorecard for needs
+// 4. Build a scorecard for age
 ////////////////////////////////////////////////////////////////////////////////
 
 
-// Starting class/name/stats/methods of a Notagotchi
+// Establishes starting class/name/stats/methods of a Notagotchi
 class Notagotchi {
   constructor(notaName){
     this.name = notaName;
@@ -19,7 +21,7 @@ class Notagotchi {
   //  Refills Food
   getFed(){
     this.food = 10;
-    //  Clicking "feed" button displays food image for 3 seconds
+    //  Clicking "feed" button displays food image for 2 seconds
     console.log("Your Notagotchi is fed.");
     console.log(this.food);
   }
@@ -27,7 +29,7 @@ class Notagotchi {
   //  Refills Sleep
   getRest(){
     this.sleep = 10;
-    //  Clicking "rest" button displays sleep image for 3 seconds
+    //  Clicking "rest" button displays sleep image for 2 seconds
     console.log("Your Notagotchi is asleep...");
     console.log(this.sleep);
   }
@@ -35,17 +37,22 @@ class Notagotchi {
   //  Refills Fun
   getFun(){
     this.fun = 10;
-    //  Clicking "play" button displays play image for 3 seconds
+    //  Clicking "play" button displays play image for 2 seconds
     console.log("You play with your Notagotchi!");
     console.log(this.fun);
   }
 
-  //  This advances the age
+
+  //  This advances the age and later causes it to die of old age... eventually
   getOlder(){
     this.age  = this.age + 1;
-    //  Happens every 7 min if lifeStatus=Alive
+
+
+    //  Happens every 7 min if still alive
     console.log("Your Notagotchi celebrates a birthday!");
     console.log("Your Notagotchi is " + this.age + " years old!");
+
+
     if (notagotchiOnScreen.age === 0) {
       $("#petImage").empty().append('<img src="images/NewZaggle.jpg" />');
     }
@@ -64,12 +71,53 @@ class Notagotchi {
     if (notagotchiOnScreen.age === 5) {
       $("#petImage").empty().append('<img src="images/Zaggle5.jpg" />');
     }
-    //  if age === 5, 10% chance of Death, Run Death Logic
-    //  if age === 6, 30% chance of Death, Run Death Logic
-    //  if age === 7, 50% chance of Death, Run Death Logic
-    //  if age === 8, 70% chance of Death, Run Death Logic
-    //  if age === 9, 90% chance of Death, Run Death Logic
-    //  if age === 10, 100% chance of Death, Run Death Logic
+
+    //  Now entering advanced ages where Notagotchi has a change to pass from age
+    if (notagotchiOnScreen.age === 5) {
+      // 10% chance of Death,
+      if (getRandomInt(0,100) <= 11 ){
+      this.die()
+      console.log("Your " + notagotchiName + " has passed from old age.");
+      this.die()
+      }
+    }
+    if (notagotchiOnScreen.age === 6) {
+      // 30% chance of Death,
+      if (getRandomInt(0,100) <= 31 ){
+      this.die()
+      console.log("Your " + notagotchiName + " has passed from old age.");
+      this.die()
+      }
+    }
+    if (notagotchiOnScreen.age === 7) {
+      // 50% chance of Death,
+      if (getRandomInt(0,100) <= 51 ){
+      this.die()
+      console.log("Your " + notagotchiName + " has passed from old age.");
+      this.die()
+      }
+    }
+    if (notagotchiOnScreen.age === 8) {
+      // 70% chance of Death,
+      if (getRandomInt(0,100) <= 71 ){
+      this.die()
+      console.log("Your " + notagotchiName + " has passed from old age.");
+      this.die()
+      }
+    }
+    if (notagotchiOnScreen.age === 9) {
+      // 90% chance of Death,
+      if (getRandomInt(0,100) <= 91 ){
+      this.die()
+      console.log("Your " + notagotchiName + " has passed from old age.");
+      this.die()
+      }
+    }
+    if (notagotchiOnScreen.age === 10) {
+      // 100% chance of Death,
+      console.log("Your " + notagotchiName + " has passed from old age.");
+      this.die()
+    }
   }
 
   //  This death method stops the time
@@ -90,6 +138,12 @@ const notagotchiOnScreen = new Notagotchi(notagotchiName);
 console.log(notagotchiOnScreen);
 
 
+//  Random Function
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 
 // Set Interval Function
@@ -133,7 +187,7 @@ const intervalId = setInterval(function() {
     notagotchiOnScreen.die()
     }
 
-  }, 1000);
+  }, 10);
 
 //  This is the base/starting image
 $("#petImage").append('<img src="images/NewZaggle.jpg" />');
