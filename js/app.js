@@ -10,9 +10,9 @@ console.log("Hello there!");
 class Notagotchi {
   constructor(notaName){
     this.name = notaName;
-    this.food = 3;
-    this.fun = 5;
-    this.sleep = 3;
+    this.food = 300;
+    this.fun = 500;
+    this.sleep = 300;
     this.age = 0;
   }
 
@@ -46,6 +46,24 @@ class Notagotchi {
     //  Happens every 7 min if lifeStatus=Alive
     console.log("Your Notagotchi celebrates a birthday!");
     console.log("Your Notagotchi is " + this.age + " years old!");
+    if (notagotchiOnScreen.age === 0) {
+      $("#petImage").empty().append('<img src="images/NewZaggle.jpg" />');
+    }
+    if (notagotchiOnScreen.age === 1) {
+      $("#petImage").empty().append('<img src="images/Zaggle1.jpg" />');
+    }
+    if (notagotchiOnScreen.age === 2) {
+      $("#petImage").empty().append('<img src="images/Zaggle2.jpg" />');
+    }
+    if (notagotchiOnScreen.age === 3) {
+      $("#petImage").empty().append('<img src="images/Zaggle3.jpg" />');
+    }
+    if (notagotchiOnScreen.age === 4) {
+      $("#petImage").empty().append('<img src="images/Zaggle4.jpg" />');
+    }
+    if (notagotchiOnScreen.age === 5) {
+      $("#petImage").empty().append('<img src="images/Zaggle5.jpg" />');
+    }
     //  if age === 5, 10% chance of Death, Run Death Logic
     //  if age === 6, 30% chance of Death, Run Death Logic
     //  if age === 7, 50% chance of Death, Run Death Logic
@@ -81,7 +99,8 @@ console.log(notagotchiOnScreen);
     //if lifeStatus=egg true do not run.
 
 
-// setInterval returns an intervalId which we will use to stop timer when its time
+//  setInterval returns an intervalId which we will use to stop timer when its time
+//  ageLogic is defined outside of function to have global scope
 let ageLogic = 0
 const intervalId = setInterval(function() {
 
@@ -115,6 +134,9 @@ const intervalId = setInterval(function() {
     }
 
   }, 1000);
+
+//  This is the base/starting image
+$("#petImage").append('<img src="images/NewZaggle.jpg" />');
 
 
 //  This button feeds the Notagotchi
