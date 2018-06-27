@@ -1,21 +1,18 @@
 console.log("Hello there!");
 
 // To Do List //////////////////////////////////////////////////////////////////
-// 1. Build a scorecard for needs
-// 2. Build a scorecard for age
-// 3. Create a start button to begin the game
-// 5. Add special effect images- (food, needy, etc images)
-// 6. Animation frames
+// 1. Build a scorecard for needs and age
+// 2. Make start button do the name function
+// 3. Add special effect images- (food, needy, etc images) (Use setTimer?)
 ////////////////////////////////////////////////////////////////////////////////
 
-// const $p = $('<p/>')
-// $p.text('placeholder text')
+
 
 //  Start button logic
 $('#start-btn').on('click', (e) => {
   $("#start-btn").remove()
+  $(".hidden2").removeClass("hidden2")
   startTimer()
-
 });
 
 
@@ -45,18 +42,16 @@ class Notagotchi {
   getFun(){
     this.fun = 10;
     //  Clicking "play" button displays play image for 2 seconds
-    $('#infoBar').text('You play with your Notagotchi!' + this.fun);
+    $('#infoBar').text('You play with your Notagotchi!');
     console.log(this.fun);
   }
 
 
 
-  //  This advances the age and later causes it to die of old age... eventually
+  //  This scores advances the age and later causes it to die of old age... eventually
   getOlder(){
     this.age  = this.age + 1;
-    //  Happens every 7 min if still alive
-    console.log("Your Notagotchi celebrates a birthday!");
-    console.log("Your Notagotchi is " + this.age + " years old!");
+      $('#infoBar').text('Your Notagotchi celebrates a birthday! ' + this.age + " years old!");
     if (notagotchiOnScreen.age === 0) {
       $("#petImage").empty().append('<img src="images/NewZaggle.jpg" />');
     }
@@ -79,41 +74,41 @@ class Notagotchi {
     if (notagotchiOnScreen.age === 5) {
       // 10% chance of Death,
       if (getRandomInt(0,100) <= 11 ){
-        console.log("Your " + notagotchiName + " has passed from old age.");
+        $('#infoBar').text("Your " + notagotchiName + " has passed from old age at " + this.age + " years of age.");
         this.die()
       }
     }
     if (notagotchiOnScreen.age === 6) {
       // 30% chance of Death,
       if (getRandomInt(0,100) <= 31 ){
-        console.log("Your " + notagotchiName + " has passed from old age.");
+        $('#infoBar').text("Your " + notagotchiName + " has passed from old age at " + this.age + " years of age.");
         this.die()
       }
     }
     if (notagotchiOnScreen.age === 7) {
       // 50% chance of Death,
       if (getRandomInt(0,100) <= 51 ){
-        console.log("Your " + notagotchiName + " has passed from old age.");
+        $('#infoBar').text("Your " + notagotchiName + " has passed from old age at " + this.age + " years of age.");
         this.die()
       }
     }
     if (notagotchiOnScreen.age === 8) {
       // 70% chance of Death,
       if (getRandomInt(0,100) <= 71 ){
-      console.log("Your " + notagotchiName + " has passed from old age.");
+        $('#infoBar').text("Your " + notagotchiName + " has passed from old age at " + this.age + " years of age.");
       this.die()
       }
     }
     if (notagotchiOnScreen.age === 9) {
       // 90% chance of Death,
       if (getRandomInt(0,100) <= 91 ){
-      console.log("Your " + notagotchiName + " has passed from old age.");
+        $('#infoBar').text("Your " + notagotchiName + " has passed from old age at " + this.age + " years of age.");
       this.die()
       }
     }
     if (notagotchiOnScreen.age >= 10) {
       // 100% chance of Death,
-      console.log("Your " + notagotchiName + " has passed from old age.");
+        $('#infoBar').text("Your " + notagotchiName + " has passed from old age at " + this.age + " years of age.");
       this.die()
     }
   }
@@ -128,7 +123,6 @@ class Notagotchi {
 //  This asks and defines Notagotchi name
 let notagotchiName = prompt("Please enter a name for your Notagotchi");
 if (notagotchiName === "") {
-  console.log("No name? We can just call them 'Notagotchi!'");
   notagotchiName = "Notagotchi";
 }
 
@@ -160,7 +154,7 @@ const startTimer = () => {
     notagotchiOnScreen.food = notagotchiOnScreen.food - 1;
     console.log(notagotchiOnScreen.food);
     if (notagotchiOnScreen.food <= 0) {
-      console.log(notagotchiOnScreen.name + " has passed from hunger...");
+      $('#infoBar').text(notagotchiOnScreen.name + " has passed from hunger...");
       $("#petImage").empty().append('<img src="images/Dead.jpg" />');
       notagotchiOnScreen.die()
     }
@@ -169,7 +163,7 @@ const startTimer = () => {
     notagotchiOnScreen.fun = notagotchiOnScreen.fun - 1;
     console.log(notagotchiOnScreen.fun);
     if (notagotchiOnScreen.fun <= 0) {
-      console.log(notagotchiOnScreen.name + " has died of boredom...");
+      $('#infoBar').text(notagotchiOnScreen.name + " has died of boredom...");
       $("#petImage").empty().append('<img src="images/Dead.jpg" />');
       notagotchiOnScreen.die()
     }
@@ -178,7 +172,7 @@ const startTimer = () => {
     notagotchiOnScreen.sleep = notagotchiOnScreen.sleep - 1;
     console.log(notagotchiOnScreen.sleep);
     if (notagotchiOnScreen.sleep <= 0) {
-      console.log(notagotchiOnScreen.name + " has passed from unrest...");
+      $('#infoBar').text(notagotchiOnScreen.name + " has passed from unrest...");
       $("#petImage").empty().append('<img src="images/Dead.jpg" />');
       notagotchiOnScreen.die()
     }
