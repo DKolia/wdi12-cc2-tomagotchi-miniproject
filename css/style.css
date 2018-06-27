@@ -71,3 +71,7 @@ a {
   color: #c4e371;
   vertical-align: middle;
 }
+
+#hidden {
+  display: none;
+}

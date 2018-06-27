@@ -8,10 +8,14 @@ console.log("Hello there!");
 // 6. Animation frames
 ////////////////////////////////////////////////////////////////////////////////
 
+// const $p = $('<p/>')
+// $p.text('placeholder text')
+
 //  Start button logic
 $('#start-btn').on('click', (e) => {
   $("#start-btn").remove()
-  
+  startTimer()
+
 });
 
 
@@ -19,30 +23,34 @@ $('#start-btn').on('click', (e) => {
 class Notagotchi {
   constructor(notaName){
     this.name = notaName;
-    this.food = 3;
+    this.food = 5;
     this.fun = 5;
-    this.sleep = 3;
+    this.sleep = 5;
     this.age = 0;
   }
   //  These fully refill a need
   getFed(){
     this.food = 10;
     //  Clicking "feed" button displays food image for 2 seconds
-    console.log("Your Notagotchi is fed.");
+    $('#infoBar').empty().append('You feed your Notagotchi.');
+
     console.log(this.food);
   }
   getRest(){
     this.sleep = 10;
     //  Clicking "rest" button displays sleep image for 2 seconds
-    console.log("Your Notagotchi is asleep...");
+    $('#infoBar').text('You put your Notagotchi to sleep...');
     console.log(this.sleep);
   }
   getFun(){
     this.fun = 10;
     //  Clicking "play" button displays play image for 2 seconds
-    console.log("You play with your Notagotchi!");
+    $('#infoBar').text('You play with your Notagotchi!' + this.fun);
     console.log(this.fun);
   }
+
+
+
   //  This advances the age and later causes it to die of old age... eventually
   getOlder(){
     this.age  = this.age + 1;
@@ -139,41 +147,44 @@ function getRandomInt(min, max) {
 //  setInterval returns an intervalId which we will use to stop timer when its time
 //  ageLogic is defined outside of function to have global scope
 let ageLogic = 0
-const intervalId = setInterval(function() {
+let intervalId;
+const startTimer = () => {
+  intervalId = setInterval(function() {
 
-  //  Slowly ages the notagotchi
-  ageLogic++;
-  if (ageLogic % 7 === 0) {
-    notagotchiOnScreen.getOlder();
-  }
-  //  Slowly reduces food supply, possibly to death
-  notagotchiOnScreen.food = notagotchiOnScreen.food - 1;
-  console.log(notagotchiOnScreen.food);
-  if (notagotchiOnScreen.food <= 0) {
-    console.log(notagotchiOnScreen.name + " has passed from hunger...");
-    $("#petImage").empty().append('<img src="images/Dead.jpg" />');
-    notagotchiOnScreen.die()
-  }
+    //  Slowly ages the notagotchi
+    ageLogic++;
+    if (ageLogic % 7 === 0) {
+      notagotchiOnScreen.getOlder();
+    }
+    //  Slowly reduces food supply, possibly to death
+    notagotchiOnScreen.food = notagotchiOnScreen.food - 1;
+    console.log(notagotchiOnScreen.food);
+    if (notagotchiOnScreen.food <= 0) {
+      console.log(notagotchiOnScreen.name + " has passed from hunger...");
+      $("#petImage").empty().append('<img src="images/Dead.jpg" />');
+      notagotchiOnScreen.die()
+    }
 
-  //  Slowly reduces fun supply, possibly to death
-  notagotchiOnScreen.fun = notagotchiOnScreen.fun - 1;
-  console.log(notagotchiOnScreen.fun);
-  if (notagotchiOnScreen.fun <= 0) {
-    console.log(notagotchiOnScreen.name + " has died of boredom...");
-    $("#petImage").empty().append('<img src="images/Dead.jpg" />');
-    notagotchiOnScreen.die()
-  }
+    //  Slowly reduces fun supply, possibly to death
+    notagotchiOnScreen.fun = notagotchiOnScreen.fun - 1;
+    console.log(notagotchiOnScreen.fun);
+    if (notagotchiOnScreen.fun <= 0) {
+      console.log(notagotchiOnScreen.name + " has died of boredom...");
+      $("#petImage").empty().append('<img src="images/Dead.jpg" />');
+      notagotchiOnScreen.die()
+    }
 
-  //  Slowly reduces rest supply, possibly to death
-  notagotchiOnScreen.sleep = notagotchiOnScreen.sleep - 1;
-  console.log(notagotchiOnScreen.sleep);
-  if (notagotchiOnScreen.sleep <= 0) {
-    console.log(notagotchiOnScreen.name + " has passed from unrest...");
-    $("#petImage").empty().append('<img src="images/Dead.jpg" />');
-    notagotchiOnScreen.die()
-  }
+    //  Slowly reduces rest supply, possibly to death
+    notagotchiOnScreen.sleep = notagotchiOnScreen.sleep - 1;
+    console.log(notagotchiOnScreen.sleep);
+    if (notagotchiOnScreen.sleep <= 0) {
+      console.log(notagotchiOnScreen.name + " has passed from unrest...");
+      $("#petImage").empty().append('<img src="images/Dead.jpg" />');
+      notagotchiOnScreen.die()
+    }
 
-}, 1000);
+  }, 1000);
+}
 
 
 
