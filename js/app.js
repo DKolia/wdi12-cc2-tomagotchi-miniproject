@@ -1,7 +1,6 @@
 console.log("Hello there!");
 
 // To Do List //////////////////////////////////////////////////////////////////
-// 2. Increase your pet's age every x minutes
 // 5. Morph your pet at certain ages
 // 6. Animate your pet across the screen
 ////////////////////////////////////////////////////////////////////////////////
@@ -83,11 +82,14 @@ console.log(notagotchiOnScreen);
 
 
 // setInterval returns an intervalId which we will use to stop timer when its time
+let ageLogic = 0
 const intervalId = setInterval(function() {
 
   //  Slowly ages the notagotchi
-  notagotchiOnScreen.getOlder();
-
+  ageLogic++;
+  if (ageLogic % 7 === 0) {
+    notagotchiOnScreen.getOlder();
+  }
   //  Slowly reduces food supply, possibly to death
   notagotchiOnScreen.food = notagotchiOnScreen.food - 1;
   console.log(notagotchiOnScreen.food);
@@ -113,8 +115,6 @@ const intervalId = setInterval(function() {
     }
 
   }, 1000);
-
-// this will stop the timer
 
 
 //  This button feeds the Notagotchi
@@ -196,9 +196,7 @@ $("#funButton").on("click",() => {
 //    Return to egg cycle
 
 //  Death Logic:
-//  Notagotchi dies when any Need falls to zero
 //  Display Death Image
-//  console.log("Your Notagotchi has perished, but it wanted to say goodbye with a gift...");
 //  Display and run Egg function
 
 //  Life Logic:
