@@ -2,8 +2,8 @@ console.log("Hello there!");
 
 // To Do List //////////////////////////////////////////////////////////////////
 // 1. Build a scorecard for needs and age
-// 2. Make start button do the name function
-// 3. Add special effect images- (food, needy, etc images) (Use setTimer?)
+// 2. Add special effect images- (food, needy, etc images) (Use setTimer?)
+// 3. Clean up code
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -12,6 +12,10 @@ console.log("Hello there!");
 $('#start-btn').on('click', (e) => {
   $("#start-btn").remove()
   $(".hidden2").removeClass("hidden2")
+  let notagotchiName = prompt("Please enter a name for your Notagotchi");
+  if (notagotchiName === "") {
+    notagotchiName = "Notagotchi";
+  }
   startTimer()
 });
 
@@ -21,7 +25,7 @@ class Notagotchi {
   constructor(notaName){
     this.name = notaName;
     this.food = 5;
-    this.fun = 5;
+    this.fun = 7;
     this.sleep = 5;
     this.age = 0;
   }
@@ -30,20 +34,19 @@ class Notagotchi {
     this.food = 10;
     //  Clicking "feed" button displays food image for 2 seconds
     $('#infoBar').empty().append('You feed your Notagotchi.');
-
-    console.log(this.food);
+    $('#currentHunger').text(this.food);
   }
   getRest(){
     this.sleep = 10;
     //  Clicking "rest" button displays sleep image for 2 seconds
     $('#infoBar').text('You put your Notagotchi to sleep...');
-    console.log(this.sleep);
+    $('#currentSleepiness').text(this.sleep);
   }
   getFun(){
     this.fun = 10;
     //  Clicking "play" button displays play image for 2 seconds
     $('#infoBar').text('You play with your Notagotchi!');
-    console.log(this.fun);
+    $('#currentBoredom').text(this.fun);
   }
 
 
@@ -120,11 +123,10 @@ class Notagotchi {
   }
 }
 
-//  This asks and defines Notagotchi name
-let notagotchiName = prompt("Please enter a name for your Notagotchi");
-if (notagotchiName === "") {
-  notagotchiName = "Notagotchi";
+const nameFunction = () => {
+
 }
+let notagotchiName;
 
 //  This utilizes the established name
 const notagotchiOnScreen = new Notagotchi(notagotchiName);
@@ -184,7 +186,6 @@ const startTimer = () => {
 
 //  This is the base/starting image
 $("#petImage").append('<img src="images/NewZaggle.jpg" />');
-
 
 //  This button feeds the Notagotchi
 $("#feedButton").on("click",() => {
